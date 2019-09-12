@@ -1,0 +1,16 @@
+body{
+    padding: 20px;
+    background: rgb(252, 255, 206);
+}
+#root h1{
+    text-align: center;
+}
+#countries{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#countries figure{
+    margin: 20px;
+    text-align: center;
+}
