@@ -1,11 +1,11 @@
-const exibeDado = (pais) => {
+exibeDado = (pais) => {
   let result = "";
 
   const indicadores = WORLDBANK[pais].indicators;
   
   result += `<h3>Proporção de mulheres empregadas em cargos executivos de nível sênior e intermediário (%)</h3>${indicadores[0].countryName}<br>`;
-     
-  for (let indicador of indicadores) {
+  
+  indicadores.map(indicador => {
     if (indicador.indicatorCode === "SL.EMP.SMGT.FE.ZS") {
       for (let ano=2012; ano<=2017; ano++) {
         if (indicador.data[ano]==="") {
@@ -15,8 +15,10 @@ const exibeDado = (pais) => {
         }
       }
     }
-  }
+  });
   return result;
 };
 
-window.data ={exibeDado: exibeDado};
+window.data ={
+  exibeDado: exibeDado
+};
