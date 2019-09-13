@@ -20,4 +20,3 @@ const exibeDado = (pais) => {
 };
 
 window.data ={exibeDado: exibeDado};
-
