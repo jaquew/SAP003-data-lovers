@@ -21,6 +21,4 @@ const exibeDado = (pais) => {
   return result;
 };
 
-window.data ={exibeDado: exibeDado}
-
-
+window.data ={exibeDado: exibeDado};
