@@ -3,11 +3,13 @@ exibeDado = (pais) => {
 
   const indicadores = WORLDBANK[pais].indicators;
   
-  result += `<h3>Proporção de mulheres empregadas em cargos executivos de nível sênior e intermediário (%)</h3>${indicadores[0].countryName}<br>`;
+  result += `${indicadores[0].countryName}<br>`;
   
   indicadores.map(indicador => {
-    if (indicador.indicatorCode === "SL.EMP.SMGT.FE.ZS") {
-      for (let ano=2012; ano<=2017; ano++) {
+    const indNome = indicador.indicatorName;
+    if (indicador.indicatorCode.slice(0, 2) === "SL" && indNome.search("mujeres")!==-1) {
+      result += indNome;
+      for (let ano=2016; ano<=2017; ano++) {
         if (indicador.data[ano]==="") {
           result += `<p>${ano}: não há dados </p>`;
         } else {
