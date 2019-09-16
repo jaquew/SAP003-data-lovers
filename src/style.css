@@ -1,9 +1,20 @@
+html{
+    height: 100%;
+}
 body{
     padding: 20px;
     background: rgb(252, 255, 206);
+    background: url(images/bg.jpg) no-repeat center;
+    background-size: cover;
 }
 #root h1{
     text-align: center;
+    color: rgb(0, 0, 0);
+    text-shadow: -1px 1px 2px white;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.349);
+    margin: 0 auto;
+    border: 2px solid white;
 }
 #countries{
     display: flex;
@@ -13,4 +24,8 @@ body{
 #countries figure{
     margin: 20px;
     text-align: center;
+}
+#res1{
+    background-color: white;
+    padding: 5px 20px;
 }
