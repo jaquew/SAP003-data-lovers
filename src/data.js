@@ -1,14 +1,15 @@
 let indicadores = "";
 let result = "";
-// let pais = "";
+
+// dados a serem exibidos o começo
 window.addEventListener("load",entrada)
 function entrada() {
   for (let pais in WORLDBANK){    
     indicadores = WORLDBANK[pais].indicators
     for (let indicador of indicadores) {
-      if (indicador.indicatorCode === "SL.EMP.SMGT.FE.ZS") {
-        document.getElementById("nomeDado").innerHTML= `<h3>${indicador.indicatorName}</h3>`
-        result += indicadores[0].countryName
+      if (indicador.indicatorCode == "SL.EMP.SMGT.FE.ZS" || indicador.indicatorCode == "SL.TLF.CACT.NE.ZS") {
+        result += `<h3>${indicador.indicatorName}</h3> ${indicadores[0].countryName}`
+        
         for (let ano=2012; ano<=2017; ano++) {
           if (indicador.data[ano]==="") {
             result += `<p>${ano}: não há dados </p>`;
@@ -28,10 +29,10 @@ function entrada() {
 const exibeDado = (pais) => {
   result = "";
   indicadores = WORLDBANK[pais].indicators
-  result += `${indicadores[0].countryName}<br>`;
-     
+       
   for (let indicador of indicadores) {
     if (indicador.indicatorCode === "SL.EMP.SMGT.FE.ZS") {
+      result+= `<h3>${indicador.indicatorName}</h3> ${indicadores[0].countryName}`
       for (let ano=2012; ano<=2017; ano++) {
         if (indicador.data[ano]==="") {
           result += `<p>${ano}: não há dados </p>`;

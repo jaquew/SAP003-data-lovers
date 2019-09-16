@@ -9,12 +9,13 @@ let resultado = document.getElementById("res1");
 
 function coletaDados() { 
   const radio = document.getElementsByName("pais");
+  let pais = ""
   for (let i in radio) { 
     if (radio[i].checked) {
       pais = radio[i].value;
     }
   }
-  if (radio.checked==false){
+  if (pais==""){
     alert("Selecione um país")
   } else {
     resultado.innerHTML = window.data.exibeDado(pais);
