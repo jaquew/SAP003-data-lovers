@@ -33,12 +33,24 @@ function selecionados(obj) {
   let result = ""
   obj.forEach(item => {
     if (item.indicatorCode === menuFiltro.value) {
-      result = item.indicatorName;
-      for (let ano=2016; ano<=2017; ano++) {
+      result = `
+      <tr>
+        <th colspan="2">${item.indicatorName}</th>
+      </tr>`
+      
+      for (let ano=2006; ano<=2017; ano++) {
         if (item.data[ano]==="") {
-          result += `<p>${ano}: não há dados </p>`;
+          result += `
+          <tr>
+            <td>${ano}:</td>
+            <td> não há dados </td>
+          </tr>`;
         } else {
-          result += `<p>${ano}: ${item.data[ano].toFixed(2)} </p>`;
+          result += `
+          <tr>
+            <td>${ano}:</td> 
+            <td> ${item.data[ano].toFixed(2)} </td>
+          </tr>`;
         }
       }
     }
