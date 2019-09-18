@@ -30,18 +30,18 @@ function coletaDados() {
 
 // Mostra os dados do indicador selecionado na tela
 function selecionados(obj) {
-  resultado.innerHTML = ""
+  let result = ""
   obj.forEach(item => {
     if (item.indicatorCode === menuFiltro.value) {
-      resultado.innerHTML = item.indicatorName;
+      result = item.indicatorName;
       for (let ano=2016; ano<=2017; ano++) {
         if (item.data[ano]==="") {
-          resultado.innerHTML += `<p>${ano}: não há dados </p>`;
+          result += `<p>${ano}: não há dados </p>`;
         } else {
-          resultado.innerHTML += `<p>${ano}: ${item.data[ano].toFixed(2)} </p>`;
+          result += `<p>${ano}: ${item.data[ano].toFixed(2)} </p>`;
         }
       }
     }
   });
-  console.log(obj)
+  resultado.innerHTML = result
 }
