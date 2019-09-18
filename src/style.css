@@ -35,3 +35,9 @@ body{
 #res p{
     padding: 5px 20px;
 }
+#filtro{
+    /* text-overflow: ellipsis; */
+    width: 70%;
+    text-align: center;
+    /* align-content: center; */
+}

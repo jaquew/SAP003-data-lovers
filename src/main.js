@@ -7,7 +7,7 @@ menuFiltro.addEventListener("change", coletaDados);
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
-  let arrayTrabalho = window.data.exibeDado(indicadores);
+  let arrayTrabalho = window.data.filterData(indicadores);
   menuFiltro.innerHTML = `<option value="none">Selecione um indicador</option>`
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`});
 }
@@ -22,7 +22,7 @@ function coletaDados() {
     }
   }
   const indicadores = WORLDBANK[pais].indicators;
-  let arrayTrabalho = window.data.exibeDado(indicadores);
+  let arrayTrabalho = window.data.filterData(indicadores);
 
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
   selecionados(arrayTrabalho);
@@ -43,4 +43,5 @@ function selecionados(obj) {
       }
     }
   });
+  console.log(obj)
 }
