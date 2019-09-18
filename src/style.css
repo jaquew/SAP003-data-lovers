@@ -20,12 +20,18 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    text-shadow: -1px 1px 2px rgb(0, 0, 0);
+    color: yellow
 }
 #countries figure{
     margin: 20px;
     text-align: center;
 }
-#res1{
-    background-color: white;
+#res1, #nomePais{
+    background-color: rgba(255, 255, 255, 0.788);
+    padding: 0;
+    text-align: center;
+}
+#res p{
     padding: 5px 20px;
 }
