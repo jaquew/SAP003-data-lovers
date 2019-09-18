@@ -2,12 +2,13 @@ const menuFiltro = document.getElementById("filtro");
 let resultado = document.getElementById("res1");
 
 window.addEventListener("load", carregaFiltro);
-document.getElementById("btn").addEventListener("click", coletaDados);
+menuFiltro.addEventListener("change", coletaDados);
 
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
   let arrayTrabalho = window.data.exibeDado(indicadores);
+  menuFiltro.innerHTML = `<option value="none">Selecione um indicador</option>`
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`});
 }
 
