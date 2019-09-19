@@ -35,3 +35,17 @@ body{
 #res p{
     padding: 5px 20px;
 }
+#filtro{
+    /* text-overflow: ellipsis; */
+    /* width: 70%; */
+    text-align: center;
+    /* align-content: center; */
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 50%;
+  }
+  /* table td{
+      width: 30%;
+  } */

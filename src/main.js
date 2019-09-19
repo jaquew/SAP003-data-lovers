@@ -7,7 +7,7 @@ menuFiltro.addEventListener("change", coletaDados);
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
-  let arrayTrabalho = window.data.exibeDado(indicadores);
+  let arrayTrabalho = window.data.filterData(indicadores);
   menuFiltro.innerHTML = `<option value="none">Selecione um indicador</option>`
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`});
 }
@@ -22,7 +22,7 @@ function coletaDados() {
     }
   }
   const indicadores = WORLDBANK[pais].indicators;
-  let arrayTrabalho = window.data.exibeDado(indicadores);
+  let arrayTrabalho = window.data.filterData(indicadores);
 
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
   selecionados(arrayTrabalho);
@@ -30,17 +30,30 @@ function coletaDados() {
 
 // Mostra os dados do indicador selecionado na tela
 function selecionados(obj) {
-  resultado.innerHTML = ""
+  let result = ""
   obj.forEach(item => {
     if (item.indicatorCode === menuFiltro.value) {
-      resultado.innerHTML = item.indicatorName;
-      for (let ano=2016; ano<=2017; ano++) {
+      result = `
+      <tr>
+        <th colspan="2">${item.indicatorName}</th>
+      </tr>`
+      
+      for (let ano=2006; ano<=2017; ano++) {
         if (item.data[ano]==="") {
-          resultado.innerHTML += `<p>${ano}: não há dados </p>`;
+          result += `
+          <tr>
+            <td>${ano}:</td>
+            <td> não há dados </td>
+          </tr>`;
         } else {
-          resultado.innerHTML += `<p>${ano}: ${item.data[ano].toFixed(2)} </p>`;
+          result += `
+          <tr>
+            <td>${ano}:</td> 
+            <td> ${item.data[ano].toFixed(2)} </td>
+          </tr>`;
         }
       }
     }
   });
+  resultado.innerHTML = result
 }
