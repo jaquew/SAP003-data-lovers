@@ -42,13 +42,13 @@ function selecionados(obj) {
         if (item.data[ano]==="") {
           result += `
           <tr>
-            <td>${ano}:</td>
+            <td>${ano}</td>
             <td> não há dados </td>
           </tr>`;
         } else {
           result += `
           <tr>
-            <td>${ano}:</td> 
+            <td>${ano}</td> 
             <td> ${item.data[ano].toFixed(2)} </td>
           </tr>`;
         }
