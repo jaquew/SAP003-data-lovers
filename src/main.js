@@ -7,9 +7,9 @@ menuFiltro.addEventListener("change", coletaDados);
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
-  let arrayTrabalho = window.data.filterData(indicadores);
-  menuFiltro.innerHTML = `<option value="none">Selecione um indicador</option>`
-  arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`});
+  let arrayTrabalho = data.filterData(indicadores);
+  menuFiltro.innerHTML = "<option value=\"none\">Selecione um indicador</option>";
+  arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`;});
 }
 
 // Filtra apenas os dados relacionados a trabalho
@@ -21,39 +21,34 @@ function coletaDados() {
       pais = radio[i].value;
     }
   }
-  const indicadores = WORLDBANK[pais].indicators;
-  let arrayTrabalho = window.data.filterData(indicadores);
-
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
-  selecionados(arrayTrabalho);
+
+  const indicadores = WORLDBANK[pais].indicators;
+  let arrayTrabalho = data.filterData(indicadores);
+  selecionados(data.filterIndicator(arrayTrabalho, menuFiltro.value));
 }
 
 // Mostra os dados do indicador selecionado na tela
-function selecionados(obj) {
-  let result = ""
-  obj.forEach(item => {
-    if (item.indicatorCode === menuFiltro.value) {
-      result = `
+function selecionados(arr) {
+  let result = "";
+  result = `
       <tr>
-        <th colspan="2">${item.indicatorName}</th>
-      </tr>`
-      
-      for (let ano=2006; ano<=2017; ano++) {
-        if (item.data[ano]==="") {
-          result += `
+        <th colspan="2">${arr[0].indicatorName}</th>
+      </tr>`;
+  for (let ano=2006; ano<=2017; ano++) {
+    if (arr[0].data[ano]==="") {
+      result += `
           <tr>
             <td>${ano}</td>
             <td> não há dados </td>
           </tr>`;
-        } else {
-          result += `
+    } else {
+      result += `
           <tr>
             <td>${ano}</td> 
-            <td> ${item.data[ano].toFixed(2)} </td>
+            <td> ${arr[0].data[ano].toFixed(2)} </td>
           </tr>`;
-        }
-      }
     }
-  });
-  resultado.innerHTML = result
+  }
+  resultado.innerHTML = result;
 }
