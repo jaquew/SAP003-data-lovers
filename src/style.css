@@ -3,7 +3,8 @@ html{
     height: 100%;
 }
 body{
-    padding: 20px;
+    margin: 0;
+    padding: 0;
     background: rgb(252, 255, 206);
     background: url(images/bg.jpg) no-repeat center;
     background-size: cover;
@@ -65,3 +66,29 @@ body{
     margin: 0 auto;
     width: 60%;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(158, 152, 152);
+    height: 40px;
+  }
+  
+  li {
+    float: left;
+    width: 25%;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
