@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth&display=swap');
 html{
     height: 100%;
 }
@@ -11,20 +12,29 @@ body{
 #root h1{
     text-align: center;
     /* display: inline-block; */
-    color: rgb(238, 255, 2);
-    text-shadow: -1px 1px 2px white;
+    color: rgb(226, 226, 226);
+    text-shadow: -1px 1px 2px rgb(0, 0, 0);
     padding: 5px;
-    background: rgba(255, 255, 255, 0.349);
+    /* background: rgba(255, 255, 255, 0.349); */
     margin: 0 auto;
-    border: 2px solid white;
+    /* border: 2px solid white; */
+    font-family: 'Amaranth', sans-serif;
 }
 #countries{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     text-shadow: -1px 1px 2px rgb(0, 0, 0);
-    color: rgb(238, 255, 2);
+    color:rgb(226, 226, 226);
+    font-family: 'Amaranth', sans-serif;
+    font-size: 1.5em;
 }
+.flex-col{
+    display: flex;
+}
+/* .flex-col figcaption{
+    background: rgba(105, 105, 105, 0.349);
+} */
 #countries figure{
     margin: 20px;
     text-align: center;
