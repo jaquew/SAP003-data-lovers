@@ -6,10 +6,12 @@ body{
     background: rgb(252, 255, 206);
     background: url(images/bg.jpg) no-repeat center;
     background-size: cover;
+    background-attachment: fixed;
 }
 #root h1{
     text-align: center;
-    color: rgb(0, 0, 0);
+    /* display: inline-block; */
+    color: rgb(238, 255, 2);
     text-shadow: -1px 1px 2px white;
     padding: 5px;
     background: rgba(255, 255, 255, 0.349);
@@ -21,7 +23,7 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     text-shadow: -1px 1px 2px rgb(0, 0, 0);
-    color: yellow
+    color: rgb(238, 255, 2);
 }
 #countries figure{
     margin: 20px;
@@ -31,21 +33,25 @@ body{
     background-color: rgba(255, 255, 255, 0.788);
     padding: 0;
     text-align: center;
+    }
+#res1{
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+} 
+#res1 td, #res1 th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 50%;
 }
+
 #res p{
     padding: 5px 20px;
 }
 #filtro{
-    /* text-overflow: ellipsis; */
-    /* width: 70%; */
     text-align: center;
-    /* align-content: center; */
+    display: block;
+    margin: 0 auto;
+    width: 60%;
 }
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 50%;
-  }
-  /* table td{
-      width: 30%;
-  } */
