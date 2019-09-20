@@ -21,9 +21,9 @@ function coletaDados() {
       pais = radio[i].value;
     }
   }
-  document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
-
   const indicadores = WORLDBANK[pais].indicators;
+  document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
+  
   let arrayTrabalho = data.filterData(indicadores);
   selecionados(data.filterIndicator(arrayTrabalho, menuFiltro.value));
 }
