@@ -44,7 +44,7 @@ body{
     background-color: rgba(255, 255, 255, 0.788);
     padding: 0;
     text-align: center;
-    }
+}
 #res1{
     width: 50%;
     margin: 0 auto;
@@ -56,7 +56,6 @@ body{
     border-collapse: collapse;
     width: 50%;
 }
-
 #res p{
     padding: 5px 20px;
 }
@@ -72,23 +71,39 @@ ul {
     margin-bottom: 10px;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(158, 152, 152);
-    height: 40px;
-  }
-  
-  li {
+    background-color: rgb(90, 89, 89);
+    font-family: 'Amaranth', sans-serif;
+}
+li {
     float: left;
-    width: 25%;
-  }
-  
-  li a {
+    width: 33.33%;
+}
+li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  
-  li a:hover {
+}
+li a:hover {
     background-color: #111;
-  }
+}
+.dados {
+    padding: 15px;
+    margin-bottom: 10px; 
+}
+@media only screen and (max-width: 480px){
+    #root h1{
+       font-size: 1.5em; 
+    }
+    #countries img{
+        width: 50px;
+        height: 50px;
+    }
+    #countries{
+        font-size: 1.2em;
+    }
+    #countries figure{
+        margin: 5px 20px;
+    }
+}
