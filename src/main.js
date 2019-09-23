@@ -1,5 +1,6 @@
 const menuFiltro = document.getElementById("filtro");
 let resultado = document.getElementById("res1");
+let mediaresult = document.getElementById("media")
 
 window.addEventListener("load", carregaFiltro);
 menuFiltro.addEventListener("change", coletaDados);
@@ -25,7 +26,8 @@ function coletaDados() {
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
   
   let arrayTrabalho = data.filterData(indicadores);
-  selecionados(data.filterIndicator(arrayTrabalho, menuFiltro.value));
+  let indSelecionado = data.filterIndicator(arrayTrabalho, menuFiltro.value)
+  selecionados(indSelecionado);
 }
 
 // Mostra os dados do indicador selecionado na tela
@@ -35,6 +37,8 @@ function selecionados(arr) {
       <tr>
         <th colspan="2">${arr[0].indicatorName}</th>
       </tr>`;
+  length = 0,
+  total  = 0;
   for (let ano=2008; ano<=2017; ano++) {
     if (arr[0].data[ano]==="") {
       result += `
@@ -43,12 +47,19 @@ function selecionados(arr) {
             <td> não há dados </td>
           </tr>`;
     } else {
+      total += arr[0].data[ano];
+      length++;
       result += `
           <tr>
             <td>${ano}</td> 
             <td> ${arr[0].data[ano].toFixed(2)} </td>
           </tr>`;
-    }
+    }    
   }
+  let media = total/length;
+  let result2 = `<h3>Média dos últimos 10 anos:</h3>
+  ${media.toFixed(2)}%`
+  
+  mediaresult.innerHTML= result2
   resultado.innerHTML = result;
 }

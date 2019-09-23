@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Amaranth|Source+Sans+Pro&display=swap');
 html{
     height: 100%;
+    font-size: 1.1rem;
 }
 body{
     margin: 0;
@@ -12,16 +13,13 @@ body{
 }
 #root h1{
     text-align: center;
-    /* display: inline-block; */
     color: rgb(226, 226, 226);
     text-shadow: -1px 1px 2px rgb(0, 0, 0);
     padding: 5px;
-    /* background: rgba(255, 255, 255, 0.349); */
     margin: 0 auto;
-    /* border: 2px solid white; */
     font-family: 'Amaranth', sans-serif;
 }
-#countries{
+.countries{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -33,23 +31,25 @@ body{
 .flex-col{
     display: flex;
 }
-/* .flex-col figcaption{
-    background: rgba(105, 105, 105, 0.349);
-} */
-#countries figure{
+
+.countries figure{
     margin: 20px;
     text-align: center;
 }
-#res1, #nomePais{
+#res1{
     background-color: rgba(255, 255, 255, 0.788);
     padding: 0;
     text-align: center;
     font-family: 'Source Sans Pro', sans-serif;
-
+}
+#nomePais{
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:white;
+    text-shadow: -1px 1px 2px rgb(0, 0, 0);
 }
 #res1{
     width: 50%;
-    margin: 0 auto;
     border: 1px solid black;
     border-collapse: collapse;
 } 
@@ -94,18 +94,44 @@ li a:hover{
     padding: 15px;
     margin-bottom: 10px; 
 }
+
+#media{
+    /* background-color: rgba(255, 255, 255, 0.788); */
+    padding: 10px;
+    display: inline-block;
+    text-align: center; 
+    color: white;
+    border: 1px solid yellow;
+    font-size: 1.2em;
+    text-shadow: -1px 1px 2px rgb(0, 0, 0);
+}
+
+.resultados{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-family: 'Amaranth', sans-serif;
+    align-items: center;
+}
+
 @media only screen and (max-width: 480px){
+    html{
+        font-size: 1rem;
+    }
     #root h1{
        font-size: 1.5em; 
     }
-    #countries img{
+    #res1{
+        width: 70%;
+    }
+    .countries img{
         width: 50px;
         height: 50px;
     }
-    #countries{
+    .countries{
         font-size: 1.2em;
     }
-    #countries figure{
+    .countries figure{
         margin: 5px 20px;
     }
 }
