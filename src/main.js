@@ -35,7 +35,7 @@ function selecionados(arr) {
       <tr>
         <th colspan="2">${arr[0].indicatorName}</th>
       </tr>`;
-  for (let ano=2006; ano<=2017; ano++) {
+  for (let ano=2008; ano<=2017; ano++) {
     if (arr[0].data[ano]==="") {
       result += `
           <tr>
