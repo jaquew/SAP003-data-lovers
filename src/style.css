@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amaranth&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Source+Sans+Pro&display=swap');
 html{
     height: 100%;
 }
@@ -44,6 +44,8 @@ body{
     background-color: rgba(255, 255, 255, 0.788);
     padding: 0;
     text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+
 }
 #res1{
     width: 50%;
@@ -65,7 +67,7 @@ body{
     margin: 0 auto;
     width: 60%;
 }
-ul {
+ul{
     list-style-type: none;
     margin: 0;
     margin-bottom: 10px;
@@ -74,21 +76,21 @@ ul {
     background-color: rgb(90, 89, 89);
     font-family: 'Amaranth', sans-serif;
 }
-li {
+li{
     float: left;
     width: 33.33%;
 }
-li a {
+li a{
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-li a:hover {
+li a:hover{
     background-color: #111;
 }
-.dados {
+.dados{
     padding: 15px;
     margin-bottom: 10px; 
 }
