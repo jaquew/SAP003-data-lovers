@@ -13,7 +13,7 @@ function carregaFiltro() {
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`;});
 }
 
-// Filtra apenas os dados relacionados a trabalho
+// Filtra apenas os dados relacionados a trabalho do pais selecionado
 function coletaDados() {  
   let pais = "";
   const radio = document.getElementsByName("pais");
@@ -25,59 +25,48 @@ function coletaDados() {
   const indicadores = WORLDBANK[pais].indicators;
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
   
+  //retorna uma array com todos os indicadores sobre trabalho
   let arrayTrabalho = data.filterData(indicadores);
+  //retnorta uma array com um elemento, contendo o indicador selecionado pelo usuário
   let indSelecionado = data.filterIndicator(arrayTrabalho, menuFiltro.value)
-  selecionados(indSelecionado);
+  selecionado(indSelecionado);
 }
 
 // Mostra os dados do indicador selecionado na tela
-function selecionados(arr) {
+function selecionado(arr) {
   let result = "";
+  let length = 0
   result = `
       <tr>  
         <th colspan="2">${arr[0].indicatorName}</th>
       </tr>`;
-  length = 0;
-  total  = 0;
-  for (let ano=2008; ano<=2017; ano++) {
-    if (arr[0].data[ano]==="") {
+  // converte o objeto "data" em uma array e filtra os dados a partir de 2008
+  let arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008)
+  
+  //retorna apenas os valores de cada ano
+  let media = ((arrayAno.map((ano) => {
+    if (ano [1]!==""){ 
       result += `
-          <tr>
-            <td>${ano}</td>
-            <td> não há dados </td>
-          </tr>`;
-    } else {
-      total += arr[0].data[ano];
-      length++;
+        <tr>
+          <td>${ano[0]}</td> 
+          <td> ${ano[1].toFixed(2)} </td>
+        </tr>`;
+        length +=1
+      return ano[1]
+    }else {
       result += `
-          <tr>
-            <td>${ano}</td> 
-            <td> ${arr[0].data[ano].toFixed(2)} </td>
-          </tr>`;
-    }    
-  }
-  // let average = arr.reduce((total, amount, index, array) => {
-  //   total += data[2008].amount;
-  //   if( index === array.length-1) { 
-  //     return total/array.length;
-  //     return total;
-  //   }else { 
-  //     console.log(total)
-  //     return total;
-  //   }
-  // });
-  let arrAno = (Object.entries(arr[0].data).filter((ano) => {if(ano[0]>=2008){return ano}}))
-  console.log(arrAno)
-  console.log(arrAno.reduce((total,ano) => total + ano))
+        <tr>
+          <td>${ano[0]}</td>
+          <td> não há dados </td>
+        </tr>`;
+      return 0
+    }})
+    //faz a somatoria e divide pela quantidade de elementos não nulos
+  .reduce((total,ano) => total+ ano))/length)
   
-  // let a = arr.map((ano) => ano.data[2008] *=2).reduce((total,ano) => total += ano)
-  // console.log(a)
+  let result2 = `<h3>Média dos últimos 10 anos:</h3>
+  ${media.toFixed(2)}%`
   
-  // let media = total/length;
-  // let result2 = `<h3>Média dos últimos 10 anos:</h3>
-  // ${average}%`
-  
-  // mediaresult.innerHTML= result2
+  mediaresult.innerHTML= result2
   resultado.innerHTML = result;
-
 }
