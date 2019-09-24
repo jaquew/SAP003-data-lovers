@@ -34,10 +34,10 @@ function coletaDados() {
 function selecionados(arr) {
   let result = "";
   result = `
-      <tr>
+      <tr>  
         <th colspan="2">${arr[0].indicatorName}</th>
       </tr>`;
-  length = 0,
+  length = 0;
   total  = 0;
   for (let ano=2008; ano<=2017; ano++) {
     if (arr[0].data[ano]==="") {
@@ -56,10 +56,28 @@ function selecionados(arr) {
           </tr>`;
     }    
   }
-  let media = total/length;
-  let result2 = `<h3>Média dos últimos 10 anos:</h3>
-  ${media.toFixed(2)}%`
+  // let average = arr.reduce((total, amount, index, array) => {
+  //   total += data[2008].amount;
+  //   if( index === array.length-1) { 
+  //     return total/array.length;
+  //     return total;
+  //   }else { 
+  //     console.log(total)
+  //     return total;
+  //   }
+  // });
+  let arrAno = (Object.entries(arr[0].data).filter((ano) => {if(ano[0]>=2008){return ano}}))
+  console.log(arrAno)
+  console.log(arrAno.reduce((total,ano) => total + ano))
   
-  mediaresult.innerHTML= result2
+  // let a = arr.map((ano) => ano.data[2008] *=2).reduce((total,ano) => total += ano)
+  // console.log(a)
+  
+  // let media = total/length;
+  // let result2 = `<h3>Média dos últimos 10 anos:</h3>
+  // ${average}%`
+  
+  // mediaresult.innerHTML= result2
   resultado.innerHTML = result;
+
 }
