@@ -1,9 +1,13 @@
 const menuFiltro = document.getElementById("filtro");
+const ordem = document.getElementById("ordem");
 let resultado = document.getElementById("res1");
 let mediaresult = document.getElementById("media")
+let arrayAno = ""
 
 window.addEventListener("load", carregaFiltro);
 menuFiltro.addEventListener("change", coletaDados);
+ordem.addEventListener("change", ordena);
+
 
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
@@ -32,41 +36,62 @@ function coletaDados() {
   selecionado(indSelecionado);
 }
 
-// Mostra os dados do indicador selecionado na tela
+// Print do nome do indicador selecionado na tela
 function selecionado(arr) {
   let result = "";
-  let length = 0
   result = `
       <tr>  
         <th colspan="2">${arr[0].indicatorName}</th>
       </tr>`;
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
-  let arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008)
+  arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008)
+  console.log(result)
+  print(arrayAno, result)
+  return result
+}
   
-  //retorna apenas os valores de cada ano
-  let media = ((arrayAno.map((ano) => {
-    if (ano [1]!==""){ 
-      result += `
-        <tr>
-          <td>${ano[0]}</td> 
-          <td> ${ano[1].toFixed(2)} </td>
-        </tr>`;
-        length +=1
-      return ano[1]
-    }else {
-      result += `
-        <tr>
-          <td>${ano[0]}</td>
-          <td> não há dados </td>
-        </tr>`;
-      return 0
-    }})
-    //faz a somatoria e divide pela quantidade de elementos não nulos
-  .reduce((total,ano) => total+ ano))/length)
-  
-  let result2 = `<h3>Média dos últimos 10 anos:</h3>
-  ${media.toFixed(2)}%`
-  
-  mediaresult.innerHTML= result2
-  resultado.innerHTML = result;
+//imprime os dados na tela e calcula a media
+function print(arrayAno, result){
+//retorna apenas os valores de cada ano
+let length = 0
+let media = (arrayAno.map((ano) => {
+  if (ano [1]!==""){ 
+    result += `
+      <tr>
+        <td>${ano[0]}</td> 
+        <td> ${ano[1].toFixed(2)} </td>
+      </tr>`;
+      length +=1
+    return ano[1]
+  }else {
+    result += `
+      <tr>
+        <td>${ano[0]}</td>
+        <td> não há dados </td>
+      </tr>`;
+    return 0
+  }}))
+  //faz a somatoria e divide pela quantidade de elementos não nulos
+media = (media.reduce((acc,cur) => acc+ cur))/length
+
+let result2 = `<h3>Média dos últimos 10 anos:</h3>
+${media.toFixed(2)}%`
+
+mediaresult.innerHTML= result2
+resultado.innerHTML = result;
+
+}
+
+function ordena(result){
+  console.log(result)
+  if (ordem.value === "menor"){
+    arrayAno.sort(function(a, b) {
+      return a[1] - b[1];
+    })
+  } else {
+    arrayAno.sort(function(a, b) {
+      return b[1] - a[1];
+    })
+  }
+  print(arrayAno,result)
 }
