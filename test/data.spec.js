@@ -18,3 +18,9 @@ describe("filterIndicator", () => {
     expect(data.filterIndicator([{"indicatorCode": "SL.TLF.PART.FE.ZS"}, {"indicatorCode": "SL.TLF.INTM.ZS"}, {"indicatorCode": "SL.TLF.INTM.MA.ZS"}], "SL.TLF.INTM.ZS")).toEqual([{"indicatorCode": "SL.TLF.INTM.ZS"}]);
   });
 });
+
+describe("orderData", () => {
+  it("ordena por dados crescente", () => {
+    expect(data.orderData([["2008", 50], ["2009", 75], ["2010", 20]], "menor")).toEqual([["2010", 20], ["2008", 50], ["2009", 75]]);
+  });
+});

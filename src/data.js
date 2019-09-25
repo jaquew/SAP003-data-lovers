@@ -2,14 +2,14 @@
 filterData = (indicadores) => indicadores.filter(indicador => {
   const indNome = indicador.indicatorName;
   const indCode = indicador.indicatorCode;
-  return (indCode.startsWith("SL") && indCode.includes("NE.ZS")===false && indNome.includes("mujeres"))
+  return (indCode.startsWith("SL") && indCode.includes("NE.ZS")===false && indNome.includes("mujeres"));
 });
 
 //Filtra por cada indicador
 filterIndicator = (arr, condition) => arr.filter (item =>item.indicatorCode === condition);
 
 orderData = (arr2, condition2) => {
-  console.log(arr2, condition2)
+  console.log(arr2)
   if (condition2 === "menor") {
     arr2.sort(function(a, b) {
       return a[1] - b[1];

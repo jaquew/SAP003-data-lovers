@@ -80,6 +80,6 @@ ${media.toFixed(2)}%`;
 }
 
 function ordena() {
-  arrayAno = data.orderData(arrayAno, ordem.value)
+  arrayAno = data.orderData(arrayAno, ordem.value);
   print(arrayAno);
 }
