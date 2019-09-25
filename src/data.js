@@ -8,7 +8,30 @@ filterData = (indicadores) => indicadores.filter(indicador => {
 //Filtra por cada indicador
 filterIndicator = (arr, condition) => arr.filter (item =>item.indicatorCode === condition);
 
+orderData = (arr2, condition2) => {
+  console.log(arr2, condition2)
+  if (condition2 === "menor") {
+    arr2.sort(function(a, b) {
+      return a[1] - b[1];
+    });
+  } else if (condition2 === "maior") {
+    arr2.sort(function(a, b) {
+      return b[1] - a[1];
+    });
+  } else if (condition2 === "anoMenor") {
+    arr2.sort(function(a, b) {
+      return a[0] - b[0];
+    });
+  } else if (condition2 === "anoMaior") {
+    arr2.sort(function(a, b) {
+      return b[0] - a[0];
+    });
+  }
+  return arr2;
+};
+
 data ={
   filterData: filterData,
-  filterIndicator: filterIndicator
+  filterIndicator: filterIndicator,
+  orderData: orderData
 };

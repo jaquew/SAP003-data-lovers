@@ -1,13 +1,13 @@
 const menuFiltro = document.getElementById("filtro");
 const ordem = document.getElementById("ordem");
 let resultado = document.getElementById("res1");
-let mediaresult = document.getElementById("media")
-let arrayAno = ""
+let mediaresult = document.getElementById("media");
+let arrayAno = "";
+let result = "";
 
 window.addEventListener("load", carregaFiltro);
 menuFiltro.addEventListener("change", coletaDados);
 ordem.addEventListener("change", ordena);
-
 
 // Popula o filtro com os nomes dos indicadores
 function carregaFiltro() {
@@ -19,6 +19,7 @@ function carregaFiltro() {
 
 // Filtra apenas os dados relacionados a trabalho do pais selecionado
 function coletaDados() {  
+  resultado.innerHTML = "";
   let pais = "";
   const radio = document.getElementsByName("pais");
   for (let i in radio) { 
@@ -32,66 +33,53 @@ function coletaDados() {
   //retorna uma array com todos os indicadores sobre trabalho
   let arrayTrabalho = data.filterData(indicadores);
   //retnorta uma array com um elemento, contendo o indicador selecionado pelo usuário
-  let indSelecionado = data.filterIndicator(arrayTrabalho, menuFiltro.value)
+  let indSelecionado = data.filterIndicator(arrayTrabalho, menuFiltro.value);
   selecionado(indSelecionado);
 }
 
 // Print do nome do indicador selecionado na tela
 function selecionado(arr) {
-  let result = "";
-  result = `
-      <tr>  
-        <th colspan="2">${arr[0].indicatorName}</th>
-      </tr>`;
+  document.getElementById("nomeIndicador").innerHTML = `<th colspan="2">${arr[0].indicatorName}</th>`;
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
-  arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008)
-  console.log(result)
-  print(arrayAno, result)
-  return result
+  arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008);
+  print(arrayAno);
 }
   
 //imprime os dados na tela e calcula a media
-function print(arrayAno, result){
+function print(arrayAno) {
 //retorna apenas os valores de cada ano
-let length = 0
-let media = (arrayAno.map((ano) => {
-  if (ano [1]!==""){ 
-    result += `
+  result = "";
+  resultado.innerHTML = "";
+  let length = 0;
+  let media = (arrayAno.map((ano) => {
+    if (ano [1]!=="") { 
+      result += `
       <tr>
         <td>${ano[0]}</td> 
         <td> ${ano[1].toFixed(2)} </td>
       </tr>`;
-      length +=1
-    return ano[1]
-  }else {
-    result += `
+      length +=1;
+      return ano[1];
+    } else {
+      result += `
       <tr>
         <td>${ano[0]}</td>
         <td> não há dados </td>
       </tr>`;
-    return 0
-  }}))
+      return 0;
+    }}));
+
   //faz a somatoria e divide pela quantidade de elementos não nulos
-media = (media.reduce((acc,cur) => acc+ cur))/length
+  media = (media.reduce((acc, cur) => acc+ cur))/length;
 
-let result2 = `<h3>Média dos últimos 10 anos:</h3>
-${media.toFixed(2)}%`
+  let result2 = `<h3>Média dos últimos 10 anos:</h3>
+${media.toFixed(2)}%`;
 
-mediaresult.innerHTML= result2
-resultado.innerHTML = result;
-
+  mediaresult.innerHTML= result2;
+  resultado.innerHTML += result;
 }
 
-function ordena(result){
-  console.log(result)
-  if (ordem.value === "menor"){
-    arrayAno.sort(function(a, b) {
-      return a[1] - b[1];
-    })
-  } else {
-    arrayAno.sort(function(a, b) {
-      return b[1] - a[1];
-    })
-  }
-  print(arrayAno,result)
+function ordena() {
+  arrayAno = data.orderData(arrayAno, ordem.value)
+  print(arrayAno);
 }
