@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data Lovers</title>
     <link rel="stylesheet" href="style.css" />
+
   </head>
   <body>
     <div id="root">
@@ -52,7 +53,7 @@
 
       <section class="dados">
         <select id="filtro"></select>
-        <select id="ordem">
+        <select id="ordem" disabled>
           <option value="none">Ordenar por</option>
           <option value="menor">Dados: Crescente</option>
           <option value="maior">Dados: Decrescente</option>
@@ -69,12 +70,15 @@
           </table>
           <span id="media"></span>
         </div>
-
+        <div id="chart"></div>
       </section>
     </div>
 
     <script src="data/worldbank/worldbank.js"></script>
     <script src="data.js"></script>
-    <script src="main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">google.load("visualization", "1.0", {'packages':['corechart']});</script>
+
   </body>
 </html>

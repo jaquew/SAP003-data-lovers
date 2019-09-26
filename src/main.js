@@ -1,7 +1,7 @@
 const menuFiltro = document.getElementById("filtro");
 const ordem = document.getElementById("ordem");
-let resultado = document.getElementById("res1");
-let mediaresult = document.getElementById("media");
+const resultado = document.getElementById("res1");
+const mediaresult = document.getElementById("media");
 let arrayAno = "";
 let result = "";
 
@@ -32,26 +32,29 @@ function coletaDados() {
   
   //retorna uma array com todos os indicadores sobre trabalho
   let arrayTrabalho = data.filterData(indicadores);
-  //retnorta uma array com um elemento, contendo o indicador selecionado pelo usuário
-  let indSelecionado = data.filterIndicator(arrayTrabalho, menuFiltro.value);
-  selecionado(indSelecionado);
-}
+  //retorna uma array com um elemento, contendo o indicador selecionado pelo usuário
+  let arr = data.filterIndicator(arrayTrabalho, menuFiltro.value);
 
-// Print do nome do indicador selecionado na tela
-function selecionado(arr) {
   document.getElementById("nomeIndicador").innerHTML = `<th colspan="2">${arr[0].indicatorName}</th>`;
+
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
   arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008);
+
   print(arrayAno);
+  //habilita a o select de ordenar após a selecionar o indicador
+  ordem.disabled = false;
+  return arr
+
 }
-  
+
 //imprime os dados na tela e calcula a media
 function print(arrayAno) {
 //retorna apenas os valores de cada ano
   result = "";
   resultado.innerHTML = "";
+
   let length = 0;
-  let media = (arrayAno.map((ano) => {
+  let valores = (arrayAno.map((ano) => {
     if (ano [1]!=="") { 
       result += `
       <tr>
@@ -70,16 +73,33 @@ function print(arrayAno) {
     }}));
 
   //faz a somatoria e divide pela quantidade de elementos não nulos
-  media = (media.reduce((acc, cur) => acc+ cur))/length;
+  const media = data.calculaMedia(valores, length);
 
   let result2 = `<h3>Média dos últimos 10 anos:</h3>
 ${media.toFixed(2)}%`;
 
   mediaresult.innerHTML= result2;
   resultado.innerHTML += result;
+  
+  google.setOnLoadCallback(drawChart)
+  // Draw the chart and set the chart values
+  function drawChart() {
+    arrayAno.unshift(["ano","%"])
+    console.log(arrayAno)
+    var data = google.visualization.arrayToDataTable(arrayAno);
+
+    // Optional; add a title and set the width and height of the chart
+    var options = {"height": 300};
+
+    // Display the chart inside the <div> element with id="chart"
+    var chart = new google.visualization.LineChart(document.getElementById("chart"));
+    chart.draw(data);
+    arrayAno.shift();
+  }
 }
 
 function ordena() {
   arrayAno = data.orderData(arrayAno, ordem.value);
   print(arrayAno);
 }
+

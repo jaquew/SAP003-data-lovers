@@ -9,7 +9,6 @@ filterData = (indicadores) => indicadores.filter(indicador => {
 filterIndicator = (arr, condition) => arr.filter (item =>item.indicatorCode === condition);
 
 orderData = (arr2, condition2) => {
-  console.log(arr2);
   if (condition2 === "menor") {
     arr2.sort(function(a, b) {
       return a[1] - b[1];
@@ -30,8 +29,11 @@ orderData = (arr2, condition2) => {
   return arr2;
 };
 
+calculaMedia = (arr3, length) => (arr3.reduce((acc, cur) => acc+ cur))/length;
+
 data ={
   filterData: filterData,
   filterIndicator: filterIndicator,
-  orderData: orderData
+  orderData: orderData,
+  calculaMedia: calculaMedia
 };

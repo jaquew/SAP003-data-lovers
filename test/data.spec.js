@@ -27,3 +27,9 @@ describe("orderData", () => {
     expect(data.orderData([["2008", 50], ["2009", 75], ["2010", 20]], "anoMaior")).toEqual([["2010", 20], ["2009", 75], ["2008", 50]]);
   });
 });
+
+describe("calculaMedia", () => {
+  it("calcula a media dos valores", () => {
+    expect(data.calculaMedia([90, 26, 46], 3)).toEqual(54);
+  });
+});
