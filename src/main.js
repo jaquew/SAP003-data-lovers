@@ -85,15 +85,14 @@ ${media.toFixed(2)}%`;
   // Draw the chart and set the chart values
   function drawChart() {
     arrayAno.unshift(["ano","%"])
-    console.log(arrayAno)
     var data = google.visualization.arrayToDataTable(arrayAno);
 
     // Optional; add a title and set the width and height of the chart
-    var options = {"height": 300};
+    var options = {backgroundColor: "#e9e6e6"};
 
     // Display the chart inside the <div> element with id="chart"
     var chart = new google.visualization.LineChart(document.getElementById("chart"));
-    chart.draw(data);
+    chart.draw(data, options);
     arrayAno.shift();
   }
 }
