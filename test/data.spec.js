@@ -23,4 +23,7 @@ describe("orderData", () => {
   it("ordena por dados crescente", () => {
     expect(data.orderData([["2008", 50], ["2009", 75], ["2010", 20]], "menor")).toEqual([["2010", 20], ["2008", 50], ["2009", 75]]);
   });
+  it("ordena por data decrescente", () => {
+    expect(data.orderData([["2008", 50], ["2009", 75], ["2010", 20]], "anoMaior")).toEqual([["2010", 20], ["2009", 75], ["2008", 50]]);
+  });
 });
