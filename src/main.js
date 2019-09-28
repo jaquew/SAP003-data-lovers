@@ -35,7 +35,10 @@ function coletaDados() {
   //retorna uma array com um elemento, contendo o indicador selecionado pelo usuário
   let arr = data.filterIndicator(arrayTrabalho, menuFiltro.value);
 
-  document.getElementById("nomeIndicador").innerHTML = `<th colspan="2">${arr[0].indicatorName}</th>`;
+  document.getElementById("nomeIndicador").innerHTML = arr[0].indicatorName;
+
+  document.getElementById("theader").innerHTML = `<th>Ano</th>
+  <th>%</th>`
 
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
   arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008);
