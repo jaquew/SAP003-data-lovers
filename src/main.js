@@ -43,8 +43,7 @@ function coletaDados() {
   print(arrayAno);
   //habilita a o select de ordenar após a selecionar o indicador
   ordem.disabled = false;
-  return arr
-
+  return arr;
 }
 
 //imprime os dados na tela e calcula a media
@@ -82,25 +81,23 @@ ${media.toFixed(2)}%`;
   resultado.innerHTML += result;
   
   //cria uma array com os dados do indice [0] retirados de "arrayAno" e indice [1] de "valores"(com 0 no lugar de "")
-  const arrGrafico = arrayAno.map((item) => {return [item[0],valores[arrayAno.indexOf(item)]]})
+  const arrGrafico = arrayAno.map((item) => {return [item[0], valores[arrayAno.indexOf(item)]];});
 
   // Grafico
-  google.setOnLoadCallback(drawChart)
-  // Draw the chart and set the chart values
-  function drawChart() {
-    arrGrafico.unshift(["Ano","Índice"])
-    var data = google.visualization.arrayToDataTable(arrGrafico);
+  google.setOnLoadCallback(drawChart);
 
-    // Optional; add a title and set the width and height of the chart
-    var options = {
+  function drawChart() {
+    arrGrafico.unshift(["Ano", "Índice"]);
+    const data = google.visualization.arrayToDataTable(arrGrafico);
+
+    const options = {
       backgroundColor: "#e9e6e6",
       legend: "none",
       vAxis: {title: "%"},
       hAxis: {title: "Ano"},
     };
 
-    // Display the chart inside the <div> element with id="chart"
-    var chart = new google.visualization.LineChart(document.getElementById("chart"));
+    const chart = new google.visualization.LineChart(document.getElementById("chart"));
     chart.draw(data, options);
   }
 }
@@ -109,4 +106,3 @@ function ordena() {
   arrayAno = data.orderData(arrayAno, ordem.value);
   print(arrayAno);
 }
-

@@ -17,7 +17,7 @@ A página possibilita a visualização de indicadores relacionados a trabalho e 
 
 O projeto foi feito em HTML, CSS e Vanilla JS.
 
-A visualização de dados em forma de gráficos é parte da hacker edition e utilizamos [Google Charts](https://developers.google.com/chart/).
+A visualização de dados em forma de gráficos é parte da hacker edition e utilizamos o [Google Charts](https://developers.google.com/chart/).
 
 ### Arquivos
 * `src/index.html` entra a página que vai ser exibida ao usuário.
@@ -30,28 +30,30 @@ A visualização de dados em forma de gráficos é parte da hacker edition e uti
 ### Histórias de Usuário
 Foram criadas duas personas com histórias de usuário e definição de pronto.
 
-![Persona1](src/images/AnaClaudia.jpg).
+![Persona1](src/images/AnaClaudia.jpg)
 
-![Persona2](src/images/CarlosAlberto.jpg).
+![Persona2](src/images/CarlosAlberto.jpg)
 
 
 ### Protótipo de baixa fidelidade
 
 O primeiro protótipo de baixa fidelidade foi feito no papel, com uma visão geral e básica do que pensamos.
 
-![Protótipo1](src/images/Protótipo1.png).
+![Protótipo1](src/images/ProtótipoPapel.jpeg)
 
 ***
 
-Após o primeiro sprint, redesenhamos e melhoramos.
+Após o primeiro sprint, redesenhamos e melhoramos para que fosse responsivo.
 
-![Protótipo1](src/images/).
+![Protótipo2](src/images/Protótipo2.jpeg)
 
 
 ### Layout da Página
 
-Desktop
-![Layout_Desktop](src/images/Desktop.png).
+Página para desktop:
 
-Celular
-![Layout_Celular](src/images/Celular.png).
+![Layout_Desktop](src/images/Desktop.png)
+
+Página no celular:
+
+![Layout_Celular](src/images/Celular.png)
