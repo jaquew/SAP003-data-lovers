@@ -43,9 +43,9 @@ O primeiro protótipo de baixa fidelidade foi feito no papel, com uma visão ger
 
 ***
 
-Após o primeiro sprint, redesenhamos e melhoramos.
+Após o primeiro sprint, redesenhamos e melhoramos para que fosse responsivo.
 
-![Protótipo2](src/images/)
+![Protótipo2](src/images/Protótipo2.jpeg)
 
 
 ### Layout da Página
