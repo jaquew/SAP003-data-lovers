@@ -13,7 +13,7 @@ ordem.addEventListener("change", ordena);
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
   let arrayTrabalho = data.filterData(indicadores);
-  menuFiltro.innerHTML = "<option value=\"none\">Selecione um indicador</option>";
+  menuFiltro.innerHTML = `<option value=\"none\">Selecione um indicador</option>`;
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`;});
 }
 
@@ -72,7 +72,7 @@ function print(arrayAno) {
       return 0;
     }}));
 
-  //faz a somatoria e divide pela quantidade de elementos não nulos
+  //calcula a media de todos os valores não nulos
   const media = data.calculaMedia(valores, length);
 
   let result2 = `<h3>Média dos últimos 10 anos:</h3>
@@ -81,19 +81,27 @@ ${media.toFixed(2)}%`;
   mediaresult.innerHTML= result2;
   resultado.innerHTML += result;
   
+  //cria uma array com os dados do indice [0] retirados de "arrayAno" e indice [1] de "valores"(com 0 no lugar de "")
+  const arrGrafico = arrayAno.map((item) => {return [item[0],valores[arrayAno.indexOf(item)]]})
+
+  // Grafico
   google.setOnLoadCallback(drawChart)
   // Draw the chart and set the chart values
   function drawChart() {
-    arrayAno.unshift(["ano","%"])
-    var data = google.visualization.arrayToDataTable(arrayAno);
+    arrGrafico.unshift(["Ano","Índice"])
+    var data = google.visualization.arrayToDataTable(arrGrafico);
 
     // Optional; add a title and set the width and height of the chart
-    var options = {backgroundColor: "#e9e6e6"};
+    var options = {
+      backgroundColor: "#e9e6e6",
+      legend: "none",
+      vAxis: {title: "%"},
+      hAxis: {title: "Ano"},
+    };
 
     // Display the chart inside the <div> element with id="chart"
     var chart = new google.visualization.LineChart(document.getElementById("chart"));
     chart.draw(data, options);
-    arrayAno.shift();
   }
 }
 
