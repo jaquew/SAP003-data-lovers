@@ -13,7 +13,7 @@ Além disso, também elaboramos os testes unitários de cada função implementa
 
 Escolhemos um assunto dentre todos os indicadores disponíveis no banco de dados. A questão da equidade de gêneros no mercado de trabalho é um tema que vem crescendo, portanto, decidimos focar nos indicadores que tivessem tal relação.
 
-A página possibilita a visualização de indicadores relacionados a trabalho e que incluam mulheres, entre os anos de 2006 e 2017. O intuito é que esses dados estejam disponiveis de forma mais simples para uma pesquisa rápida. 
+A página possibilita a visualização de indicadores relacionados a trabalho e que incluam mulheres, entre os anos de 2008 e 2017. O intuito é que esses dados estejam disponiveis de forma mais simples para uma pesquisa rápida. 
 
 O projeto foi feito em HTML, CSS e Vanilla JS.
 
