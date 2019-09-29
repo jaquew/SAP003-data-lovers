@@ -20,8 +20,7 @@ function carregaFiltro() {
 
 // Filtra apenas os dados relacionados a trabalho do pais selecionado
 function coletaDados() {
-  closed = false;
-  resultado.innerHTML = "";
+    resultado.innerHTML = "";
   let pais = "";
   const radio = document.getElementsByName("pais");
   for (let i in radio) {
@@ -44,17 +43,15 @@ function coletaDados() {
 
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
   arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008);
-
+  
+  closed = false;
   print(arrayAno);
   //habilita a o select de ordenar após a selecionar o indicador
   ordem.disabled = false;
-  console.log(closed)
-  // return closed;
 }
 
 //imprime os dados na tela e calcula a media
 function print(arrayAno) {
-  console.log(closed)
 //retorna apenas os valores de cada ano
   result = "";
   resultado.innerHTML = "";
@@ -108,7 +105,6 @@ ${media.toFixed(2)}%`;
 
       const chart = new google.visualization.LineChart(document.getElementById("chart"));
       chart.draw(data, options);
-      console.log(closed)
     }
   }
   
