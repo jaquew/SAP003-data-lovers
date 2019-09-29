@@ -4,6 +4,7 @@ const resultado = document.getElementById("res1");
 const mediaresult = document.getElementById("media");
 let arrayAno = "";
 let result = "";
+let closed = false;
 
 window.addEventListener("load", carregaFiltro);
 menuFiltro.addEventListener("change", coletaDados);
@@ -18,18 +19,18 @@ function carregaFiltro() {
 }
 
 // Filtra apenas os dados relacionados a trabalho do pais selecionado
-function coletaDados() {  
+function coletaDados() {
   resultado.innerHTML = "";
   let pais = "";
   const radio = document.getElementsByName("pais");
-  for (let i in radio) { 
+  for (let i in radio) {
     if (radio[i].checked) {
       pais = radio[i].value;
     }
   }
   const indicadores = WORLDBANK[pais].indicators;
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
-  
+
   //retorna uma array com todos os indicadores sobre trabalho
   let arrayTrabalho = data.filterData(indicadores);
   //retorna uma array com um elemento, contendo o indicador selecionado pelo usuário
@@ -57,10 +58,10 @@ function print(arrayAno) {
 
   let length = 0;
   let valores = (arrayAno.map((ano) => {
-    if (ano [1]!=="") { 
+    if (ano [1]!=="") {
       result += `
       <tr>
-        <td>${ano[0]}</td> 
+        <td>${ano[0]}</td>
         <td> ${ano[1].toFixed(2)} </td>
       </tr>`;
       length +=1;
@@ -82,7 +83,7 @@ ${media.toFixed(2)}%`;
 
   mediaresult.innerHTML= result2;
   resultado.innerHTML += result;
-  
+
   //cria uma array com os dados do indice [0] retirados de "arrayAno" e indice [1] de "valores"(com 0 no lugar de "")
   const arrGrafico = arrayAno.map((item) => {return [item[0], valores[arrayAno.indexOf(item)]];});
 
@@ -90,18 +91,23 @@ ${media.toFixed(2)}%`;
   google.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    arrGrafico.unshift(["Ano", "Índice"]);
-    const data = google.visualization.arrayToDataTable(arrGrafico);
+      if(!closed){
+      arrGrafico.unshift(["Ano", "Índice"]);
+      const data = google.visualization.arrayToDataTable(arrGrafico);
 
-    const options = {
-      backgroundColor: "#e9e6e6",
-      legend: "none",
-      vAxis: {title: "%"},
-      hAxis: {title: "Ano"},
-    };
+      const options = {
+        backgroundColor: "#e9e6e6",
+        legend: "none",
+        vAxis: {title: "%"},
+        hAxis: {title: "Ano"},
+      };
 
-    const chart = new google.visualization.LineChart(document.getElementById("chart"));
-    chart.draw(data, options);
+      const chart = new google.visualization.LineChart(document.getElementById("chart"));
+      chart.draw(data, options);
+      closed = true;
+    } else {
+      return false
+    }
   }
 }
 
