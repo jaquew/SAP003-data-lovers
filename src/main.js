@@ -4,6 +4,7 @@ const resultado = document.getElementById("res1");
 const mediaresult = document.getElementById("media");
 let arrayAno = "";
 let result = "";
+let done = false;
 
 window.addEventListener("load", carregaFiltro);
 menuFiltro.addEventListener("change", coletaDados);
@@ -13,23 +14,23 @@ ordem.addEventListener("change", ordena);
 function carregaFiltro() {
   let indicadores = WORLDBANK.PER.indicators;
   let arrayTrabalho = data.filterData(indicadores);
-  menuFiltro.innerHTML = `<option value=\"none\">Selecione um indicador</option>`;
+  menuFiltro.innerHTML = "<option value=\"none\">Selecione um indicador</option>";
   arrayTrabalho.forEach(item => {menuFiltro.innerHTML += `<option value="${item.indicatorCode}"> ${item.indicatorName}</option>`;});
 }
 
 // Filtra apenas os dados relacionados a trabalho do pais selecionado
-function coletaDados() {  
+function coletaDados() {
   resultado.innerHTML = "";
   let pais = "";
   const radio = document.getElementsByName("pais");
-  for (let i in radio) { 
+  for (let i in radio) {
     if (radio[i].checked) {
       pais = radio[i].value;
     }
   }
   const indicadores = WORLDBANK[pais].indicators;
   document.getElementById("nomePais").innerHTML = indicadores[0].countryName;
-  
+
   //retorna uma array com todos os indicadores sobre trabalho
   let arrayTrabalho = data.filterData(indicadores);
   //retorna uma array com um elemento, contendo o indicador selecionado pelo usuário
@@ -38,15 +39,16 @@ function coletaDados() {
   document.getElementById("nomeIndicador").innerHTML = arr[0].indicatorName;
 
   document.getElementById("theader").innerHTML = `<th>Ano</th>
-  <th>%</th>`
+  <th>%</th>`;
 
   // converte o objeto "data" em uma array e filtra os dados a partir de 2008
   arrayAno = Object.entries(arr[0].data).filter((ano) => ano[0]>=2008);
-
+  
+  // variavel done pra rodar o grafico apenas quando mudar o indicador
+  done = false;
   print(arrayAno);
   //habilita a o select de ordenar após a selecionar o indicador
   ordem.disabled = false;
-  return arr;
 }
 
 //imprime os dados na tela e calcula a media
@@ -57,10 +59,10 @@ function print(arrayAno) {
 
   let length = 0;
   let valores = (arrayAno.map((ano) => {
-    if (ano [1]!=="") { 
+    if (ano [1]!=="") {
       result += `
       <tr>
-        <td>${ano[0]}</td> 
+        <td>${ano[0]}</td>
         <td> ${ano[1].toFixed(2)} </td>
       </tr>`;
       length +=1;
@@ -82,7 +84,7 @@ ${media.toFixed(2)}%`;
 
   mediaresult.innerHTML= result2;
   resultado.innerHTML += result;
-  
+
   //cria uma array com os dados do indice [0] retirados de "arrayAno" e indice [1] de "valores"(com 0 no lugar de "")
   const arrGrafico = arrayAno.map((item) => {return [item[0], valores[arrayAno.indexOf(item)]];});
 
@@ -90,18 +92,30 @@ ${media.toFixed(2)}%`;
   google.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    arrGrafico.unshift(["Ano", "Índice"]);
-    const data = google.visualization.arrayToDataTable(arrGrafico);
+    if (!done) {
+      done = true;
+      arrGrafico.unshift(["Ano", "Índice"]);
+      const data = google.visualization.arrayToDataTable(arrGrafico);
 
-    const options = {
-      backgroundColor: "#e9e6e6",
-      legend: "none",
-      vAxis: {title: "%"},
-      hAxis: {title: "Ano"},
-    };
+      const options = {
+        backgroundColor: "#e9e6e6",
+        legend: "none",
+        title: "Evolução",
+        lineWidth: 3,
+        colors: ["#ff7777"],
+        vAxis: {title: "%"},
+        hAxis: {
+          title: "Ano", 
+          slantedText: true, 
+          slantedTextAngle: 45},
+        chartArea: {
+          height: "50%" 
+        }
+      };
 
-    const chart = new google.visualization.LineChart(document.getElementById("chart"));
-    chart.draw(data, options);
+      const chart = new google.visualization.LineChart(document.getElementById("chart"));
+      chart.draw(data, options);
+    }
   }
 }
 

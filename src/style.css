@@ -11,7 +11,7 @@ body{
     background-size: cover;
     background-attachment: fixed;
 }
-#root h1{
+#root h1, #sobre h2, #contato h2{
     text-align: center;
     color: rgb(226, 226, 226);
     text-shadow: -1px 1px 2px rgb(0, 0, 0);
@@ -54,7 +54,7 @@ body{
 }
 
 #chart{
-    height: 40%;
+    height: 60%;
     width: 60%;
     margin: 10px auto;
 }
@@ -101,7 +101,8 @@ li a{
     text-decoration: none;
 }
 li a:hover{
-    background-color: #111;
+    background-color: #111111;
+    color: #ff7777;
 }
 .dados{
     padding: 15px;
@@ -123,9 +124,19 @@ li a:hover{
 .resultados{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    text-align: center;
+    justify-content: space-around;
     font-family: 'Amaranth', sans-serif;
     align-items: center;
+    width: 80%;
+    margin:0 auto;
+}
+#sobre div{
+    padding: 5px 20px;
+    text-indent: 25px;
+    /* color: rgb(226, 226, 226); */
+    background-color: #ffffff96;
+    text-align: justify;
 }
 
 @media only screen and (max-width: 520px){
@@ -150,6 +161,7 @@ li a:hover{
     }
     .resultados{
         flex-direction: row;
+        width: 90%;
     }
     #ordem, #filtro{
         margin-top: 5px;
