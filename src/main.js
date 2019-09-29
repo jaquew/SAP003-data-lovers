@@ -20,6 +20,7 @@ function carregaFiltro() {
 
 // Filtra apenas os dados relacionados a trabalho do pais selecionado
 function coletaDados() {
+  closed = false;
   resultado.innerHTML = "";
   let pais = "";
   const radio = document.getElementsByName("pais");
@@ -47,11 +48,13 @@ function coletaDados() {
   print(arrayAno);
   //habilita a o select de ordenar após a selecionar o indicador
   ordem.disabled = false;
-  return arr;
+  console.log(closed)
+  // return closed;
 }
 
 //imprime os dados na tela e calcula a media
 function print(arrayAno) {
+  console.log(closed)
 //retorna apenas os valores de cada ano
   result = "";
   resultado.innerHTML = "";
@@ -92,6 +95,7 @@ ${media.toFixed(2)}%`;
 
   function drawChart() {
       if(!closed){
+      closed = true;
       arrGrafico.unshift(["Ano", "Índice"]);
       const data = google.visualization.arrayToDataTable(arrGrafico);
 
@@ -104,11 +108,10 @@ ${media.toFixed(2)}%`;
 
       const chart = new google.visualization.LineChart(document.getElementById("chart"));
       chart.draw(data, options);
-      closed = true;
-    } else {
-      return false
+      console.log(closed)
     }
   }
+  
 }
 
 function ordena() {
